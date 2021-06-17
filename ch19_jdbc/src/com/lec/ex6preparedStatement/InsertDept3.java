@@ -1,0 +1,88 @@
+package com.lec.ex6preparedStatement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class InsertDept3 {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+		
+		String selsql = "select * from dept where deptno = ?";
+		String insql = "Insert into dept values (?, ?, ?)";
+		
+		System.out.print("추가할 부서번호 입력 : ");
+		int deptno = sc.nextInt();
+		
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(selsql);
+			pstmt.setInt(1, deptno);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				System.out.println("중복된 부서번호는 추가할 수 없음");
+			} else {
+				System.out.print("부서명 입력 : ");
+				String dname = sc.next();
+				System.out.print("근무지 입력 : ");
+				String loc = sc.next();
+				
+				rs.close(); pstmt.close();
+				pstmt = conn.prepareStatement(insql);
+				pstmt.setInt(1, deptno); // 첫번째 물음표에 들어갈 변수
+				pstmt.setString(2, dname);
+				pstmt.setString(3, loc);
+				
+				int result = pstmt.executeUpdate();
+				if (result > 0) {
+					System.out.println("추가 완료");
+				}
+			} // if-else
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+	} // main
+} // class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
