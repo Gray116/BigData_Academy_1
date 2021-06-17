@@ -1,0 +1,140 @@
+package com.lec.ex2customer;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class CustomerMng extends JFrame implements ActionListener{
+	/* 1. 컴포넌트 변수 설정 */
+	private Container contenPane;
+	private JPanel jpUp, jpDown;
+	private JTextField txtPhone, txtName, txtPoint;
+	private JTextArea jta;
+	private JScrollPane scrollPane;
+	private JButton btnJoin, btnSearch, btnOutput, btnExit;
+	
+	/* 2. DB 연결 */
+	private CustomerDAO dao;
+	private ArrayList<CustomerDTO> person;
+	
+	/* 3. 화면 구성 */
+	public CustomerMng(String title) {
+		super(title);
+		dao = CustomerDAO.getInstance();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		contenPane = getContentPane();
+		contenPane.setLayout(new FlowLayout());
+		
+		jpUp = new JPanel(new GridLayout(3, 2));
+		jpDown = new JPanel(new FlowLayout());
+		
+		txtPhone = new JTextField(15);
+		txtName = new JTextField(15);
+		txtPoint = new JTextField(15);
+		
+//		ImageIcon icon1 = new ImageIcon("src/icon/join.png");
+		btnJoin = new JButton("가입");
+		btnJoin.setPreferredSize(new Dimension(100, 30));
+//		
+//		ImageIcon icon2 = new ImageIcon("src/icon/search.png");
+		btnSearch = new JButton("폰조회", icon2);
+		btnSearch.setPreferredSize(new Dimension(100, 30));
+//		
+//		ImageIcon icon3 = new ImageIcon("src/icon/output.png");
+		btnOutput = new JButton("출력", icon3);
+		btnOutput.setPreferredSize(new Dimension(100, 30));
+//		
+//		ImageIcon icon4 = new ImageIcon("src/icon/exit.png");
+		btnExit = new JButton("종료", icon4);
+		btnExit.setPreferredSize(new Dimension(100, 30));
+		
+		jta = new JTextArea(60, 30);
+		scrollPane = new JScrollPane(jta);
+		
+		jpUp.add(new JLabel("폰번호", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtPhone);
+		
+		jpUp.add(new JLabel("이름", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtName);
+		
+		jpUp.add(new JLabel("포인트", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtPoint);
+		
+//		jpDown.add(btnJoin);
+//		jpDown.add(btnSearch);
+//		jpDown.add(btnOutput);
+//		jpDown.add(btnExit);
+		
+		contenPane.add(jpUp);
+		contenPane.add(jpDown);
+		contenPane.add(scrollPane);
+		
+		setVisible(true);
+		setSize(new Dimension(400, 450)); // 화면 크기지정
+		setLocation(200, 150); // 화면의 첫 출력위치 지정
+		
+		btnJoin.addActionListener(this);
+		btnOutput.addActionListener(this);
+		btnSearch.addActionListener(this);
+		btnExit.addActionListener(this);
+		
+		
+		
+		
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void main(String[] args) {
+		new CustomerMng("회원관리");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

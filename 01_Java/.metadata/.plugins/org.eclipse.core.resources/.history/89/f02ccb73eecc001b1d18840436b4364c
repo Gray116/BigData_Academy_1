@@ -1,0 +1,110 @@
+package com.lec.ex2customer;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class CustomerDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED = 1;
+	public static final int FAILED = 0;
+	private static CustomerDAO INSTANCE;
+	
+	private CustomerDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static CustomerDAO getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new CustomerDAO();
+		}
+		return INSTANCE;
+	}
+	
+	public int insertPerson(CustomerDTO dto) {
+		int result = FAILED;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO CUSTOMER" + 
+				"    VALUES (CUSTOMER_ID_SEQ.NEXTVAL, ?, ?, ?)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getCno());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getTel());
+			pstmt.setInt(4, dto.getPoint());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	} // <데이터 입력> 끝
+	
+	/* 번호로 조회 */
+	public ArrayList<CustomerDTO> selectTel(String tel){
+		ArrayList<CustomerDTO> dtos = new ArrayList<CustomerDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT *" + 
+				"    FROM CUSTOMER WHERE TEL LIKE '%' || ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, tel);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String tel = rs.getString("tel");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+} // class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

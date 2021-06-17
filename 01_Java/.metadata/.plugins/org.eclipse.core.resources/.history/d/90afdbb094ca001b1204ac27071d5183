@@ -1,0 +1,21 @@
+package com.lec.ex6preparedStatement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class UpdateDept {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+		
+		String sql = "UPDATE DEPT" + 
+				"    SET DNAME = ?, LOC = ?" + 
+				"    WHERE DEPTNO = ?";
+	}
+}

@@ -1,0 +1,63 @@
+package com.lec.exam;
+
+public class StudentDTO {
+	private int rank;
+	private String sno;
+	private String sname;
+	private int mno;
+	private int score;
+	private int sexpel;
+	private String mname;
+	
+	/* 학생 입력 용*/
+	public StudentDTO(String sno, String sname, String mname, int score) {
+		this.sno = sno;
+		this.sname = sname;
+		this.mname = mname;
+		this.score = score;
+	}
+	
+	/* 학생 조회 용*/
+	public StudentDTO(int rank, String sno, String sname, String mname, int mno, int score, int sexpel) {
+		this.rank = rank;
+		this.sno = sno;
+		this.sname = sname;
+		this.mname = mname;
+		this.mno = mno;
+		this.score = score;
+		this.sexpel = sexpel;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public String getSno() {
+		return sno;
+	}
+
+	public String getSname() {
+		return sname;
+	}
+
+	public int getMno() {
+		return mno;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public int getSexpel() {
+		return sexpel;
+	}
+	
+	public String getMname() {
+		return mname;
+	}
+
+	@Override
+	public String toString() {
+		return rank + "등\t" + sno + "\t" + sname + "\t" + mname + "\t" + score;
+	}
+}

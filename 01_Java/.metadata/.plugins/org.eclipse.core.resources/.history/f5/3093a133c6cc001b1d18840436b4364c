@@ -1,0 +1,110 @@
+/* 입력, 직업 별 검색, 전체 검색, 콤보박스에 들어갈 직업리스트 */
+/* 싱글톤 클래스 */
+
+package com.lec.ex1Person;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class PersonDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED 	= 1;
+	public static final int FAILED 		= 0;
+	private static PersonDAO INSTANCE;
+	
+	private PersonDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public static PersonDAO getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new PersonDAO(); 
+		}
+		return INSTANCE;
+	}
+	
+	/* 데이터 입력 */
+	public int insertPerson(PersonDTO dto) {
+		int result = FAILED; // 최악의 경우를 생각
+		/* 로직 수행 */
+		Connection 			conn = null;
+		PreparedStatement 	pstmt = null;
+		
+		String sql = "INSERT INTO PERSON" + 
+				"    VALUES (PERSON_NO_SEQ.NEXTVAL, (SELECT JNO FROM JOB WHERE JNAME = ?)," + 
+				"                ?, ?, ?, ?)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getJname());
+			pstmt.setString(2, dto.getJname());
+			pstmt.setInt(3, dto.getKor());
+			pstmt.setInt(4, dto.getEng());
+			pstmt.setInt(5, dto.getMat());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	/* 직업별 출력*/
+	public ArrayList<PersonDTO> selectJname(String jname){
+		ArrayList<PersonDTO> dtos = new ArrayList<PersonDTO>();
+		/* 로직 수행 */
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT ROWNUM RANK, S.*" + 
+				"    FROM (SELECT NAME || '('||NO||'번)' NAME, JNAME, KOR, ENG, MAT, (KOR + ENG + MAT) SUM\r\n" + 
+				"                FROM PERSON P, JOB J" + 
+				"                WHERE P.JNO = J.JNO AND JNAME = ?" + 
+				"                ORDER BY SUM DESC) S";
+		
+		return dtos;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

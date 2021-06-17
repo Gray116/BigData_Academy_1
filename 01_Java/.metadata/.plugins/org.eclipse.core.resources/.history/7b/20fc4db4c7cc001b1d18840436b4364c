@@ -1,0 +1,8 @@
+package com.lec.ex1Person;
+
+public class PersonDAOTest {
+	public static void main(String[] args) {
+		PersonDAO dao = PersonDAO.getInstance(); //教臂畔 按眉狼 函荐 檬扁拳
+		PersonDTO newPerson = new PersonDTO("全全全", "硅快", 90, 95, 100);
+	}
+}

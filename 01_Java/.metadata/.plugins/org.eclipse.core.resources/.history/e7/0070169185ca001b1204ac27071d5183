@@ -1,0 +1,18 @@
+package com.lec.ex5preparedStatement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class InsertDept {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM DEPT WHERE DEPTNO = ?";
+	}
+}

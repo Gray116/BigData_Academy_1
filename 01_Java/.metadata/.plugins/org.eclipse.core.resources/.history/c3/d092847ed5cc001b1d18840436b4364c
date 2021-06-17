@@ -1,0 +1,12 @@
+package com.lec.ex1Person;
+
+public class PersonDAOTest {
+	public static void main(String[] args) {
+		PersonDAO dao = PersonDAO.getInstance(); //싱글턴 객체의 변수 초기화
+		/* 1. 입력 */
+		PersonDTO newPerson = new PersonDTO("배우", "홍홍홍", 90, 95, 100);
+		int result = dao.insertPerson(newPerson);
+		
+		System.out.println(result == PersonDAO.SUCCESSED? "입력 성공" : "입력 실패");
+	}
+}

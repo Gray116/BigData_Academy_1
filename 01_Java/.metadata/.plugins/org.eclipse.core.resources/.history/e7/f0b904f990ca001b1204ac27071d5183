@@ -1,0 +1,21 @@
+/* 부서명을 입력받아 해당 부서명의 사번, 이름, 급여, 상사이름을 출력 */
+
+package com.lec.ex6preparedStatement;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class SelectWhereDname {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+		
+		String selsql = "";
+	}
+}

@@ -1,0 +1,7 @@
+/* rank, name, jname, kor, eng, mat, sum */
+
+package com.lec.ex1Person;
+
+public class PersonDTO {
+
+}

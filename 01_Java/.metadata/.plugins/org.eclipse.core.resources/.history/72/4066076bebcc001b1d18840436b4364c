@@ -1,0 +1,17 @@
+package com.lec.ex2customer;
+
+public class CustomerDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED = 1;
+	public static final int FAILED = 0;
+	private CustomerDAO INSTANCE;
+	
+	private CustomerDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}

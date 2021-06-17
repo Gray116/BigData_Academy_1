@@ -1,0 +1,54 @@
+package com.lec.ex0conn;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SelectAllOracle {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		Statement stmt = null; 
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM EMP";
+		
+		try {
+			/* 1단계 : 드라이버 로드 */
+			Class.forName(driver);
+			
+			/* 2단계 : (DB를 연결하는)객체 생성 */
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			
+			/* 3단계 : (SQL문을 전송해주는)객체 생성 */
+			stmt = conn.createStatement();
+			
+			/* 4,5단계 : (SELECT문의 결과를 받는)객체 생성 및 결과 받기 */
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) { // rs가 가져올 데이터가 있냐?
+				
+			} else {
+				System.out.println("조회 결과 없음");
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage() + "드라이버 오류");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	} //main
+} //class

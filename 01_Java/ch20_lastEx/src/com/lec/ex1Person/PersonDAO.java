@@ -1,0 +1,189 @@
+/* 입력, 직업 별 검색, 전체 검색, 콤보박스에 들어갈 직업리스트 */
+/* 싱글톤 클래스 */
+
+package com.lec.ex1Person;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class PersonDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED 	= 1;
+	public static final int FAILED 		= 0;
+	private static PersonDAO INSTANCE;
+	
+	private PersonDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public static PersonDAO getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new PersonDAO(); 
+		}
+		return INSTANCE;
+	}
+	
+	/* 데이터 입력 */
+	public int insertPerson(PersonDTO dto) {
+		int result = FAILED; // 최악의 경우를 생각
+		/* 로직 수행 */
+		Connection 			conn = null;
+		PreparedStatement 	pstmt = null;
+		
+		String sql = "INSERT INTO PERSON" + 
+				"    VALUES (PERSON_NO_SEQ.NEXTVAL, (SELECT JNO FROM JOB WHERE JNAME = ?)," + 
+				"                ?, ?, ?, ?)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getJname());
+			pstmt.setString(2, dto.getName());
+			pstmt.setInt(3, dto.getKor());
+			pstmt.setInt(4, dto.getEng());
+			pstmt.setInt(5, dto.getMat());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	} // <데이터 입력> 끝
+	
+	/* 직업별 출력*/
+	public ArrayList<PersonDTO> selectJname(String jname){
+		ArrayList<PersonDTO> dtos = new ArrayList<PersonDTO>();
+		/* 로직 수행 */
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT ROWNUM RANK, S.*" + 
+				"    FROM (SELECT NAME || '('||NO||'번)' NAME, JNAME, KOR, ENG, MAT, (KOR + ENG + MAT) SUM" + 
+				"                FROM PERSON P, JOB J" + 
+				"                WHERE P.JNO = J.JNO AND JNAME = ?" + 
+				"                ORDER BY SUM DESC) S";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, jname);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int rank = rs.getInt("rank");
+				String name = rs.getString("name");
+				int kor = rs.getInt("kor");
+				int eng = rs.getInt("eng");
+				int mat = rs.getInt("mat");
+				int sum = rs.getInt("sum");
+				
+				dtos.add(new PersonDTO(rank, jname, name, kor, eng, mat, sum));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}		
+		return dtos;
+	} // <직업별 출력> 끝
+	
+	/* 전체 출력 */
+	public ArrayList<PersonDTO> selectAll(){
+		ArrayList<PersonDTO> dtos = new ArrayList<PersonDTO>();
+		/* 로직 수행 */
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT ROWNUM RANK, S.*" + 
+				"    FROM (SELECT NAME || '('||NO||'번)' NAME, JNAME, KOR, ENG, MAT, (KOR + ENG + MAT) SUM" + 
+				"                FROM PERSON P, JOB J" + 
+				"                WHERE P.JNO = J.JNO" + 
+				"                ORDER BY SUM DESC) S";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int rank = rs.getInt("rank");
+				String name = rs.getString("name");
+				String jname = rs.getString("jname");
+				int kor = rs.getInt("kor");
+				int eng = rs.getInt("eng");
+				int mat = rs.getInt("mat");
+				int sum = rs.getInt("sum");
+				
+				dtos.add(new PersonDTO(rank, jname, name, kor, eng, mat, sum));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}		
+		return dtos;
+	} // <전체출력> 끝
+	
+	/* 직업명 리스트를 벡터로 리턴 */
+	public Vector<String> jnameList() {
+		Vector<String> jnames = new Vector<String>();
+		jnames.add(""); // 빈 배열 하나 넣어주기
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT JNAME" + 
+				"    FROM JOB" + 
+				"    ORDER BY JNO";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				jnames.add(rs.getString("jname"));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}		
+		return jnames;
+	} // <직업명 리스트> 끝
+}

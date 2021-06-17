@@ -1,0 +1,9 @@
+/* 1. 부서번호 검색 */
+
+package com.lec.ex2insert;
+
+public class InsertDept2 {
+	public static void main(String[] args) {
+		
+	}
+}

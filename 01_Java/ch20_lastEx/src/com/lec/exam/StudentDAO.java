@@ -1,0 +1,332 @@
+package com.lec.exam;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
+
+public class StudentDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED 	= 1;
+	public static final int FAILED 		= 0;
+	private static StudentDAO INSTANCE;
+	
+	private StudentDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static StudentDAO getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new StudentDAO();
+		}
+		return INSTANCE;
+	}
+	
+	/* 학번으로 검색 */
+	public StudentDTO searchStudentNo (String sno) {
+		StudentDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT SNO, SNAME, MNAME, SCORE" + 
+				"    FROM STUDENT S, MAJOR M" + 
+				"    WHERE S.MNO = M.MNO AND SNO = ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sno);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String sname = rs.getString("sname");
+				String mname = rs.getString("mname");
+				int score = rs.getInt("score");
+				
+				dto = new StudentDTO(sno, sname, mname, score);
+			} else {
+				System.out.println("없는 학번입니다.");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return dto;
+	} // 학번으로 검색 끝
+	
+	/* 이름으로 검색 */
+	public ArrayList<StudentDTO> searchName(String sname){
+		ArrayList<StudentDTO> dtos = new ArrayList<StudentDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT SNO, SNAME, MNAME, SCORE" + 
+				"    FROM STUDENT S, MAJOR M" + 
+				"    WHERE S.MNO = M.MNO AND SNAME = ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sname);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String sno = rs.getString("sno");
+				String mname = rs.getString("mname");
+				int score = rs.getInt("score");
+				
+				dtos.add(new StudentDTO(sno, sname, mname, score));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return dtos;
+	} // 이름으로 조회 끝
+	
+	/* 전공으로 검색 */
+	public ArrayList<StudentDTO> searchMajor(String mname) {
+		ArrayList<StudentDTO> dtos = new ArrayList<StudentDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT SNO, SNAME, MNAME, SCORE" + 
+				"    FROM STUDENT S, MAJOR M" + 
+				"    WHERE S.MNO = M.MNO AND MNAME = ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mname);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String sno = rs.getString("sno");
+				String sname = rs.getString("sname");
+				int score = rs.getInt("score");
+				
+				dtos.add(new StudentDTO(sno, sname, mname, score));				
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				
+			} catch (Exception e2) {}
+		}
+		return dtos;
+	} // 전공 검색 끝
+	
+	/* 학생 입력 */
+	public int insertStudent(StudentDTO dto) {
+		int result = FAILED;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO STUDENT (SNO, SNAME, MNO, SCORE)" + 
+				"    VALUES (EXTRACT(YEAR FROM SYSDATE) || TRIM(TO_CHAR(STUDENT_NO_SEQ.NEXTVAL, '000')), "
+				+ "?, (SELECT MNO FROM MAJOR WHERE MNAME = ?), ?)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getSname());
+			pstmt.setString(2, dto.getMname());
+			pstmt.setInt(3, dto.getScore());
+			
+			result = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return result;
+	} // 학생 입력 끝
+	
+	/* 학생 수정 */
+	public int updateStudent(StudentDTO dto) {
+		int result = FAILED;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE STUDENT" + 
+				"    SET SNAME = ?, MNO = (SELECT MNO FROM MAJOR WHERE MNAME = ?)," + 
+				"        SCORE = ?" + 
+				"    WHERE SNO = ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getSname());
+			pstmt.setString(2, dto.getMname());
+			pstmt.setInt(3, dto.getScore());
+			pstmt.setString(4, dto.getSno());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return result;
+	} // 학생 수정 끝
+	
+	/* 학생 출력 */
+	public ArrayList<StudentDTO> OutputStudents() {
+		ArrayList<StudentDTO> dtos = new ArrayList<StudentDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT ROWNUM RANK, SNAME || '('||SNO||')' SNAME, mNAME||'('||mNO||')' mNAME, SCORE" + 
+				"    FROM (SELECT S.*, MNAME FROM STUDENT S, MAJOR M" + 
+				"                WHERE S.MNO=M.MNO AND SEXPEL = 0" + 
+				"                ORDER BY SCORE DESC)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				int rank = rs.getInt("rank");
+				String sname = rs.getString("sname");
+				String mname = rs.getString("mname");
+				int score = rs.getInt("score");
+				
+				dtos.add(new StudentDTO(rank, sname, mname, score));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return dtos;
+	} // 학생 출력 끝
+	
+	/* 제적자 출력 */
+	public ArrayList<StudentDTO> ExpelStudent(){
+		ArrayList<StudentDTO> dtos = new ArrayList<StudentDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT ROWNUM RANK, SNAME || '(' || SNO || ')' SName, MNAME || '(' || MNO || ')' MNAME, SCORE" + 
+				"    FROM (SELECT S.*, MNAME FROM STUDENT S, MAJOR M" + 
+				"    WHERE S.MNO=M.MNO AND SEXPEL=1" + 
+				"    ORDER BY SCORE DESC)";
+		
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String rank = rs.getString("rank");
+				String sname = rs.getString("sname");
+				String mname = rs.getString("mname");
+				int score = rs.getInt("score");
+				
+				dtos.add(new StudentDTO(rank, sname, mname, score));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return dtos;
+	} // 제적자 출력 끝
+	
+	/* 제적 처리 */
+	 public int ExpelSno(String sno) {
+		 int result = FAILED;
+		 Connection conn = null;
+		 PreparedStatement pstmt = null;
+		 
+		 String sql = "UPDATE STUDENT" + 
+		 		"    SET SEXPEL = 1" + 
+		 		"    WHERE SNO = ?";
+		 
+		 try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sno);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return result;
+	 } // 제적처리 끝
+	 
+	 /* 콤보박스 */
+	 public Vector<String> MnameLists(){
+		 Vector<String> mnames = new Vector<String>();
+		 mnames.add("");
+		 Connection conn = null;
+		 Statement stmt = null;
+		 ResultSet rs = null;
+		 
+		 String sql = "SELECT MNAME" + 
+		 		"    FROM MAJOR";
+		 
+		 try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				mnames.add(rs.getString("mname"));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (stmt != null) stmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return mnames;
+	 } // 콤보박스 끝
+}

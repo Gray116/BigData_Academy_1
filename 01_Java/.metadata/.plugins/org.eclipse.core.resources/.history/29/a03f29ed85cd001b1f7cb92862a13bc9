@@ -1,0 +1,30 @@
+package com.lec.exam;
+
+public class StudentDTO {
+	private int rank;
+	private int sno;
+	private String sname;
+	private String mno;
+	private int score;
+	private int sexpel;
+	
+	/* 학생 입력 용*/
+	public StudentDTO(int sno, String sname, String mno, int score) {
+		this.sno = sno;
+		this.sname = sname;
+		this.mno = mno;
+		this.score = score;
+	}
+	
+	/* 학생 조회 용*/
+	public StudentDTO(int rank, int sno, String sname, String mno, int score, int sexpel) {
+		this.rank = rank;
+		this.sno = sno;
+		this.sname = sname;
+		this.mno = mno;
+		this.score = score;
+		this.sexpel = sexpel;
+	}
+	
+	
+}

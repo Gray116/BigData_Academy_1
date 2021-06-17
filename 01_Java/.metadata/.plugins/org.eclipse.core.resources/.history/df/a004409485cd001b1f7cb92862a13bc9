@@ -1,0 +1,5 @@
+package com.lec.exam;
+
+public class StudentDTO {
+
+}

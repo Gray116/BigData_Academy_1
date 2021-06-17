@@ -1,0 +1,252 @@
+package com.lec.exam;
+
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class StudentMng extends JFrame implements ActionListener{
+	/* 기본 컴포넌트 설정 */
+	private Container contenPane;
+	private JPanel jpUp, jpBtn;
+	private JTextField txtSno, txtSname, txtMname, txtScore;
+	private JButton btnSNoSearch, btnSNameSearch, btnMNameSearch, btnInput,
+					btnUpdate, btnStudentOut, btnExpelOut, btnExpel, btnExit;
+	private JTextArea txtPool;
+	private Vector<String> mnames;
+	private JComboBox<String> comMname;
+	private JScrollPane scrollPane;
+	
+	/* DB 연동 변수 설정 */
+	private StudentDAO dao;
+	private ArrayList<StudentDTO> student;
+	
+	/* 화면 구성 */
+	public StudentMng(String title) {
+		super(title);
+		dao = StudentDAO.getInstance();
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		contenPane = getContentPane();
+		contenPane.setLayout(new FlowLayout());
+		
+		jpUp = new JPanel(new GridLayout(4, 3));
+		jpBtn = new JPanel(new FlowLayout());
+		
+		txtSno = new JTextField(10);
+		txtSname = new JTextField(10);
+		mnames = dao.MnameLists();
+		comMname = new JComboBox<String>(mnames);
+		txtScore = new JTextField(10);
+		
+		jpUp.add(new JLabel("학번", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtSno);
+		
+		btnSNoSearch = new JButton("학번검색");
+		btnSNoSearch.setPreferredSize(new Dimension(30, 30));
+		jpUp.add(btnSNoSearch);
+		
+		jpUp.add(new JLabel("이름", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtSname);
+		
+		btnSNameSearch = new JButton("이름검색");
+		btnSNameSearch.setPreferredSize(new Dimension(30, 30));
+		jpUp.add(btnSNameSearch);
+		
+		jpUp.add(new JLabel("전공", (int) CENTER_ALIGNMENT));
+		jpUp.add(comMname);
+		
+		btnMNameSearch = new JButton("전공검색");
+		btnMNameSearch.setPreferredSize(new Dimension(30, 30));
+		jpUp.add(btnMNameSearch);
+		
+		jpUp.add(new JLabel("점수", (int) CENTER_ALIGNMENT));
+		jpUp.add(txtScore);					
+		
+		btnInput = new JButton("학생입력");
+		btnInput.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnInput);
+		
+		btnUpdate = new JButton("학생수정");
+		btnUpdate.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnUpdate);
+		
+		btnStudentOut = new JButton("학생출력");
+		btnStudentOut.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnStudentOut);
+		
+		btnExpelOut = new JButton("제적자출력");
+		btnExpelOut.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnExpelOut);
+		
+		btnExpel = new JButton("제적처리");
+		btnExpel.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnExpel);
+		
+		btnExit = new JButton("종료");
+		btnExit.setPreferredSize(new Dimension(100, 30));
+		jpBtn.add(btnExit);
+		
+		txtPool = new JTextArea(12, 60);
+		scrollPane = new JScrollPane(txtPool);
+		
+		contenPane.add(jpUp);
+		contenPane.add(jpBtn);
+		contenPane.add(scrollPane);
+		
+		setVisible(true);
+		setSize(new Dimension(700, 450)); // 화면 크기지정
+		setLocation(200, 150); // 화면의 첫 출력위치 지정
+		
+		btnSNoSearch.addActionListener(this);
+		btnSNameSearch.addActionListener(this);
+		btnMNameSearch.addActionListener(this);	
+		
+		btnInput.addActionListener(this);	
+		btnUpdate.addActionListener(this);	
+		btnStudentOut.addActionListener(this);
+		btnExpelOut.addActionListener(this);
+		btnExpel.addActionListener(this);	
+		btnExit.addActionListener(this);	
+	}	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnInput) {
+			String sno = txtSno.getText().trim();
+			String sname = txtSname.getText().trim();
+			String mname = comMname.getSelectedItem().toString();
+			String scoreStr = txtScore.getText().trim();
+			
+			if(sname.equals("") || mname.equals("") || scoreStr.equals("")) {
+				txtPool.setText("이름, 학과명, 점수는 입력해야 합니다.");
+				return;
+			}
+			int score = Integer.parseInt(scoreStr);
+			int result = dao.insertStudent(new StudentDTO(sno ,sname, mname, score));
+			
+			if (result == StudentDAO.SUCCESSED) {
+				txtPool.setText(sname + "님 입력 성공");
+				txtSname.setText("");
+				comMname.setSelectedIndex(0);
+				txtScore.setText("");
+			}
+		} else if (e.getSource() == btnUpdate) {
+			
+		} else if (e.getSource() == btnStudentOut) {
+			student = dao.OutputStudents();
+			if (student.size() == 0) {
+				txtPool.setText("입력된 정보 없음");
+			} else {
+				txtPool.setText("석차\t이름(학번)\t\t학과명\t점수\n");
+				for (StudentDTO s : student) {
+					txtPool.append(s.toString() + "\n");
+				}
+			}
+		} else if (e.getSource() == btnExpelOut) {
+			student = dao.ExpelStudent();
+			if (student.size() == 0) {
+				txtPool.setText("입력된 정보 없음");
+			} else {
+				txtPool.setText("석차\t이름(학번)\t\t학과명\t점수\n");
+				for (StudentDTO s : student) {
+					txtPool.append(s.toString() + "\n");
+				}
+			}
+		} else if (e.getSource() == btnExpel) {
+//			System.out.println("학생 제적 기능");
+			String sno = txtSno.getText().trim();
+			String sname = txtSname.getText().trim();
+			String mname = comMname.getSelectedItem().toString();
+			String scoreStr = txtScore.getText().trim();
+			
+			if(sname.equals("") || mname.equals("") || scoreStr.equals("")) {
+				txtPool.setText("학번, 이름, 학과명, 점수 모두 입력해야 합니다.");
+				return;
+			}
+			int score = Integer.parseInt(scoreStr);
+			int result = dao.insertStudent(new StudentDTO(sno ,sname, mname, score));
+			
+			if (result == StudentDAO.SUCCESSED) {
+				txtPool.setText(sname + "님 입력 성공");
+				txtSname.setText("");
+				comMname.setSelectedIndex(0);
+				txtScore.setText("");
+			}
+		} else if (e.getSource() == btnSNoSearch) {
+			String searchSNo = txtSno.getText().trim();
+			
+			if (searchSNo.equals("") || searchSNo.equals(" ")) {
+				txtPool.setText("학번을 입력해주세요.");
+				return;
+			}
+		} else if (e.getSource() == btnSNameSearch) {
+			
+		} else if (e.getSource() == btnMNameSearch) {
+			String mname = comMname.getSelectedItem().toString();
+			
+			if(mnames.equals("")) {
+				txtPool.setText("전공을 선택 후, 조회 가능");
+			}
+			
+			student = dao.searchMajor(mname);
+			
+			if(student.isEmpty()) {
+				txtPool.setText("해당 전공의 학생은 없습니다.");
+			} else {
+				txtPool.setText("학번\t이름\t\t학과명\t점수\n");
+				for (StudentDTO d : student) {
+					txtPool.append(d.toString() + "\n");
+				}
+			}
+		} else if (e.getSource() == btnExit) {
+			setVisible(false);
+			dispose();
+			System.exit(0);
+		}
+	}
+	
+	public static void main(String[] args) {
+		new StudentMng("학사관리");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

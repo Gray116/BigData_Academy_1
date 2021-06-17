@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;customer.exerd&apos; to &apos;ch20_lastEx/src/com.lec.ex2customer&apos;&#x0D;&#x0A;- Original project: &apos;ch19_jdbc&apos;&#x0D;&#x0A;- Destination element: &apos;ch20_lastEx/src/com.lec.ex2customer&apos;&#x0D;&#x0A;- Original element: &apos;customer.exerd&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=ch20_lastEx/src&lt;com.lec.ex2customer" element1="customer.exerd" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1623719833636" units="0" version="1.0"/>
+</session>

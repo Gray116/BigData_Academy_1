@@ -1,0 +1,20 @@
+package com.lec.ex1selectwhere;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class SelectWhereDnameEmp {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("부서이름 입력 : ");
+		String dname = sc.next().toUpperCase();
+	}
+}

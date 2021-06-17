@@ -1,0 +1,7 @@
+package com.lec.ex0conn;
+
+public class ConnOracle {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+	}
+}

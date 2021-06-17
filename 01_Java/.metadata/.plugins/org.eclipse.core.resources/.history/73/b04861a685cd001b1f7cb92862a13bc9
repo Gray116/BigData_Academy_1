@@ -1,0 +1,10 @@
+package com.lec.exam;
+
+public class StudentDTO {
+	private int rank;
+	private int sno;
+	private String sname;
+	private String mno;
+	private int score;
+	private int sexpel;
+}

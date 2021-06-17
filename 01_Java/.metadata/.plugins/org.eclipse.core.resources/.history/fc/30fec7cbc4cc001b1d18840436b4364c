@@ -1,0 +1,61 @@
+/* 입력, 직업 별 검색, 전체 검색, 콤보박스에 들어갈 직업리스트 */
+/* 싱글톤 클래스 */
+
+package com.lec.ex1Person;
+
+public class PersonDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED 	= 1;
+	public static final int FAILED 		= 0;
+	private static PersonDAO INSTANCE;
+	
+	private PersonDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public static PersonDAO getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new PersonDAO(); 
+		}
+		return INSTANCE;
+	}
+	
+	public int insertPerson(PersonDTO dto) {
+		int result = FAILED; // 최악의 경우를 생각
+		/* 로직 수행 */
+		
+		return result;
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

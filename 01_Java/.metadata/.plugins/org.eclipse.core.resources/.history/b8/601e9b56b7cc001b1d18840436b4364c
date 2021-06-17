@@ -1,0 +1,11 @@
+package com.lec.ex1Person;
+
+import java.util.Scanner;
+
+public class PersonMain {
+	public static void main(String[] args) {
+		String driver = "oracle.jdbc.driver.OracleDriver";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		Scanner sc = new Scanner(System.in);
+	}
+}

@@ -1,0 +1,60 @@
+package com.lec.ex2customer;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class CustomerDAO {
+	String driver = "oracle.jdbc.driver.OracleDriver";
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final int SUCCESSED = 1;
+	public static final int FAILED = 0;
+	private static CustomerDAO INSTANCE;
+	
+	private CustomerDAO() {
+		try {
+			Class.forName(driver);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static CustomerDAO getInstance() {
+		if(INSTANCE == null) {
+			INSTANCE = new CustomerDAO();
+		}
+		return INSTANCE;
+	}
+	
+	public int insertPerson(CustomerDTO dto) {
+		int result = FAILED;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO CUSTOMER" + 
+				"    VALUES (CUSTOMER_ID_SEQ.NEXTVAL, ?, ?, ?)";
+	}
+} // class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
