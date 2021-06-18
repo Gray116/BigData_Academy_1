@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap {width:1050px; margin: 0 auto;}
+
+        #header, #container, #footer {
+            margin : 0;
+            padding : 0;
+            width : 1000px;
+            overflow: hidden;
+        }
+
+            #header .left {
+                float: left;
+                width: 150px;
+                height: 150px;
+                background-color: gray;
+                border-radius: 20px 0 20px 0;
+                border: 1px solid black;
+            }
+
+            #header .center {
+                float: left;
+                width: 694px;
+                height: 150px;
+                background-color: gray;
+                border: 1px solid black;
+                border-radius: 0 0 20px 20px;
+            }
+
+            #header .right {
+                border: 1px solid black;
+                float: left;
+                width: 150px;
+                height: 150px;
+                background-color: gray;
+                border-radius: 0 20px 0 20px;
+            }
+
+            #container .left {
+                float: left;
+                width: 150px;
+                height: 300px;
+                background-color: gray;
+                border-radius: 0 20px 20px 0;
+                border: 1px solid black;
+            }
+
+            #container .center {
+                float: left;
+                width: 694px;
+                height: 300px;
+                border-radius : 20px;
+                background-color: gray;
+                border: 1px solid black;
+            }
+
+            #container .right {
+                border: 1px solid black;
+                float: left;
+                width: 150px;
+                height: 300px;
+                background-color: gray;
+                border-radius: 20px 0px 0 20px;
+            }
+
+            #footer .left {
+                float: left;
+                width: 150px;
+                height: 150px;
+                background-color: gray;
+                border-radius: 0 20px 0 20px;
+                border: 1px solid black;
+            }
+
+            #footer .center {
+                float: left;
+                width: 694px;
+                height: 150px;
+                background-color: gray;
+                border: 1px solid black;
+                border-radius: 20px 20px 0 0;
+            }
+
+            #footer .right {
+                border: 1px solid black;
+                float: left;
+                width: 150px;
+                height: 150px;
+                background-color: gray;
+                border-radius: 20px 0px 20px 0;
+            }
+
+        #container h2 {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        #container .center ul {
+            overflow: hidden;
+            margin : 30px 0 0 30px;
+        }
+
+        #container .center ul li{
+            float: left;
+            padding-right: 20px;
+            list-style: none;
+        }
+
+        #container .center p {
+            text-align: center;
+        }
+
+        .next ~ li {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="left">
+                
+            </div>
+
+            <div class="center">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+
+        <div id="container">
+            <div class="left">
+                
+            </div>
+
+            <div class="center">
+                <ul>
+                    <li>menu1</li>
+                    <li>menu2</li>
+                    <li>menu3</li>
+                </ul>
+
+                <h2>빅데이터 UI 전문가 양성</h2>
+                <p>본 과정은 좋다. 아주 좋다. 친구들 좋다.</p>
+            </div>
+
+            <div class="right">
+                <ol>
+                    <li>태그</li>
+                    <li>전체(*)</li>
+                    <li>id.class</li>
+                    <li>속성</li>
+                    <li>후손, 자손</li>
+                    <li>등위</li>
+                    <li>반응</li>
+                    <li>상태</li>
+                    <li class="next">구조</li>
+                    <li>문자</li>
+                    <li>링크</li>
+                    <li>부정</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="left">
+                
+            </div>
+
+            <div class="center">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

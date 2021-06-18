@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #header, #wrap, #footer {
+            width: 600px;
+            margin: 0 auto;
+            border: 1px solid gray;
+        }
+
+        #header {
+            overflow : hidden;
+        }
+
+            #header >.logo { /* 자손선택자 #header 바로 밑의 .logo */
+                float: left;
+                padding: 10px 50px 10px 150px;
+            }
+
+            #header .copy { /* 후손선택자 #header 밑의 .copy */
+                float: left;
+                padding: 20px 100px 10px 50px;
+            }
+
+        div p {
+            font-size: 25px; /* 기본 16px */
+        }
+
+        div > p {
+            color: red;
+            text-align : center;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="logo">
+            <h1>LOGO</h1>
+        </div>
+
+        <div class="copy">
+            <h2>00 주식회사</h2>
+        </div>
+     </div>
+
+     <div id="wrap">
+         <p>꽃 이것을 불러 이성은 있다. 영락과 그와 무엇을 끓는다. 
+         놀이 어디 대한 두손을 뜨고, 오직 그것을 끓는다. 
+         낙원을 가는 날카로우나 없는 발휘하기 그러므로 있으랴? 인생을 못할 그와 능히 있는 있다.
+         살았으며, 동산에는 일월과 생생하며,
+         </p>
+         
+         <ul>
+            <li><p>Where does it come from?</p></li>
+            <li><p>Where does it come from?</p></li>
+            <li><p>Where does it come from?</p></li>
+          </ul>
+      </div>
+    <div id="footer">
+        <p>서울시 마포구 노고산동 그랜드빌딩 707호</p>
+    </div>
+</body>
+</html>
