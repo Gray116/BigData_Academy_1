@@ -1,0 +1,33 @@
+﻿#wrap {
+    margin : 0 auto;
+    border: 3px solid greenyellow;
+    width : 400px;
+    background-color:antiquewhite;
+}
+
+header {
+    text-align:center;
+    margin: 0 auto;
+    width:400px;
+    height: 60px;
+    background-color:lightsalmon;
+    border : 3px solid darkgray;
+}
+
+table {
+    margin : 10px auto;
+}
+
+table caption {
+    text-align:center;
+}
+
+footer {
+    text-align: center;
+    font-weight : bold;
+    margin: 0 auto;
+    width: 400px;
+    height: 60px;
+    background-color: lightsalmon;
+    border: 3px solid darkgray;
+}

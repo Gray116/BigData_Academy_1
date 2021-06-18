@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="ex1.css"/>
+    <script>
+        function chk() {
+            if (frm.uname.value.length < 2 || !frm.uname.value) {
+                alert('두글자 이상의 이름을 입력해주세요.');
+                frm.name.focus();
+                return false;
+            } else if (frm.uid.value.length < 4 || !frm.uid.value) {
+                alert('네글자 이상의 아이디를 입력해주세요.')
+                frm.uid.focus();
+                return false;
+            } else if (frm.upw.value.length < 1 || !frm.upw.value) {
+                alert('한글자 이상의 암호를 입력해주세요.')
+                frm.upw.focus();
+                return false;
+            } else if (frm.upw.value.length != frm.upwchk.value.length || frm.upw.value != frm.upwchk.value) {
+                alert('비밀번호가 일치하지 않습니다.')
+                frm.upw.value = ""
+                frm.upwchk.value=""
+                frm.upw.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h2>회원가입</h2>
+    </header>
+    
+    <div id="wrap">
+        <form action="" name="frm" method="get" onsubmit="return chk()">
+            <table>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="uname" placeholder="이름은 2글자 이상 입력" /></td>
+                </tr>
+
+                <tr>
+                    <th>아이디</th>
+                    <td><input type="text" name="uid" placeholder="아이디는 4글자 이상 입력" /></td>
+                </tr>
+
+                <tr>
+                    <th>비밀번호</th>
+                    <td><input type="password" name="upw" /></td>
+                </tr>
+
+                <tr>
+                    <th>비밀번호 확인</th>
+                    <td><input type="password" name="upwchk" /></td>
+                </tr>
+
+                <tr>
+                    <th>이메일</th>
+                    <td>
+                        <input type="email" name="email"
+                               pattern="[a-zA-Z]+[a-zA-Z]*@[a-zA-Z]+(\.[a-zA-Z]+){1,2}" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>전화</th>
+                    <td><input type="tel" name="tel" pattern="[0-9]{2,3}.*-[0-9]{3,4}.*-[0-9]{4}" /></td>
+                </tr>
+
+                <tr>
+                    <th>출신지역</th>
+                    <td>
+                        <select>
+                            <option>선택</option>
+                            <option>서울</option>
+                            <option>경기</option>
+                            <option>인천</option>
+                            <option>대전</option>
+                            <option>대구</option>
+                            <option>부산</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>결혼유무</th>
+                    <td>
+                        <input type="radio" name="married" value="m" />기혼
+                        <input type="radio" name="married" value="nm" />미혼
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>자식유무</th>
+                    <td>
+                        <select>
+                            <option>없음</option>
+                            <option>1명</option>
+                            <option>2명</option>
+                            <option>3명</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="제출" />
+                        <input type="reset" value="초기화" />
+                    </th>
+                </tr>
+            </table>
+        </form>
+     </div>
+
+    <footer>
+        <p>Copyright ⓒ ALL RIGHTS RESERVED.</p>
+    </footer>
+</body>
+</html>
