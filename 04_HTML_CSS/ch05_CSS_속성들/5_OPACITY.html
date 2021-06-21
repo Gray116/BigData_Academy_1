@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+            ul li {
+                display: inline-block;
+                list-style: none;
+                width: 160px;
+                height: 100px;
+                text-align: center;
+                background-color: moccasin;
+            }
+
+                ul li:nth-child(1) {
+                    opacity: 1; /* 1은 불투명, 0은 투명 */
+                }
+
+                ul li:nth-child(2) {
+                    opacity: .5; /* 1은 불투명, 0은 투명 */
+                }
+
+                ul li:nth-child(3) {
+                    opacity: .3; /* 1은 불투명, 0은 투명 */
+                }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>우리나라만세</li> <!-- 정렬했을 때 발생하는 공백은 띄어쓰기 때문 -->
+        <li>대한민국만세</li>
+        <li>KOREA 만세</li>
+    </ul>
+</body>
+</html>

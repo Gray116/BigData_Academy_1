@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            /* display 속성 : block, inline, inline-block, none */
+        }
+
+            div:nth-child(1) {
+                display: block; /* 기본 값 */
+                background-color: red;
+            }
+
+            div:nth-child(2) {
+                background-color: orange;
+            }
+
+            div:nth-child(3) {
+                display: inline; 
+                margin: 10px;
+                background-color: yellow;
+            }
+
+            div:nth-child(4) {
+               display:inline;
+                background-color: green;
+            }
+
+            div:nth-child(5) {
+                display: inline-block; /* inline 속성이면서 height, width 속성이 가능 */
+                background-color: blue;
+            }
+
+            div:nth-child(6) {
+                display: none; /* 안보이게 함 (content6의 공간을 없앰) */
+                background-color: navy;
+            }
+
+            div:nth-child(7) {
+                display: inline-block;
+                background-color: purple;
+            }
+
+            div:nth-child(8) {
+                background-color: hotpink;
+            }
+    </style>
+</head>
+<body>
+        <div>content1</div>
+        <div>content2</div>
+        <div>content3</div>
+        <div>content4</div>
+        <div>content5</div>
+        <div>content6</div>
+        <div>content7</div>
+        <div>content8</div>
+</body>
+</html>

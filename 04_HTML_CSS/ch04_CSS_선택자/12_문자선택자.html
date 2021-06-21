@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+            #wrap #header {
+                text-align: center;
+                border-bottom: 1px solid #cccccc;
+            }
+
+            #wrap #content p:nth-child(2)::first-line,
+            #wrap #content p:nth-child(3)::first-line { /* 문자 선택자 */
+                color: blue;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            #wrap #content p:nth-child(2)::first-letter,
+            #wrap #content p:nth-child(3)::first-letter {
+                font-size: 2em;
+            }
+
+            #wrap #content p:nth-child(3)::selection {
+                background-color: violet;
+                color: yellowgreen;
+            }
+
+            #wrap #footer ul {
+                border-top: 1px solid #cccccc;
+                overflow: hidden;
+            }
+
+            #wrap #footer ul li {
+                float: left;
+                list-style: none;
+            }
+
+            #wrap #footer ul li:first-child {
+                padding-top: 25px;
+            }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h1>제목이나 회사명</h1>
+        </div>
+
+        <div id="content">
+            <p>
+                이국 아직 못 다 당신은 많은 버리었습니다. 이웃 아침이 이름을 위에 보고, 노새, 별 까닭입니다. 
+                이네들은 지나고 하나에 새겨지는 자랑처럼 가난한 된 사람들의 별에도 계십니다. 보고, 계집애들의 나는 멀리 오면 사랑과 위에 까닭이요,
+                듯합니다. 
+            </p>
+
+            <p>
+                그러나 아스라히 나의 마리아 계집애들의 오는 어머님, 계십니다. 애기 겨울이 노루, 어머님, 차 봅니다.
+                이름자 남은 가을로 북간도에 언덕 가을 겨울이 마디씩 비둘기, 거외다.자랑처럼 소학교 이런 별이 별 부끄러운 이름을 하나에 이름과 봅니다.
+                그러나 아스라히 나의 마리아 계집애들의 오는 어머님, 계십니다. 애기 겨울이 노루, 어머님, 차 봅니다.
+                이름자 남은 가을로 북간도에 언덕 가을 겨울이 마디씩 비둘기, 거외다.자랑처럼 소학교 이런 별이 별 부끄러운 이름을 하나에 이름과 봅니다.
+            </p>
+
+            <p>
+                별 쓸쓸함과 애기 나는 마리아 까닭입니다.
+                비둘기, 나는 파란 무성할 별들을 멀리 노새, 풀이 있습니다.
+                별 쓸쓸함과 애기 나는 마리아 까닭입니다.
+                비둘기, 나는 파란 무성할 별들을 멀리 노새, 풀이 있습니다.
+            </p>
+        </div>
+
+        <div id="footer">
+            <ul>
+                <li><img src="images/logo.png" alt="로고"/></li>
+                <li><img src="images/address.png" alt="주소"/></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

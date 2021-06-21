@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            opacity: 0.6;
+        }
+
+        #div1 {
+            position: absolute; /* 강제로 내가 위치를 정할 수 있음 */
+            left: 0;
+            top: 0;
+            background-color: red;
+        }
+
+        #div2 {
+            position: fixed; /* 화면의 좌표에 고정되어 스크롤해도 따라내려옴 */
+            left: 50px;
+            top: 50px;
+            background-color: orange;
+        }
+
+        #div3 {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            background-color: yellow;
+        }
+
+        #div4 {
+            position: absolute;
+            left: 150px;
+            top: 150px;
+            background-color: green;
+        }
+
+        #div5 {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background-color: blue;
+        }
+
+        #div6 {
+            width: 150px;
+            height: 150px;
+            background-color: deeppink;
+            position: relative; /* 상대 좌표 */
+            left: 50px;
+            top: 50px;
+            z-index: 999;
+        }
+
+        #div7 {
+            width: 150px;
+            height: 150px;
+            background-color: rosybrown;
+            position: relative;
+        }
+
+        #div8 {
+            width: 150px;
+            height: 150px;
+            background-color: sandybrown;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+    <div id="div4">
+        div4
+        <div id="div5">
+            div5
+        </div>
+    </div>
+
+    <div id="div6">div6</div>
+    <div id="div7">div7</div>
+    <div id="div8">div8</div>
+</body>
+</html>
