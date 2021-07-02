@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('h2').first().click(function () {
+                $(this).append('◀').prepend('▶');
+                $(this).off;
+            });
+
+            $('h2').last().one('click', function () { // 이벤트 한번 수행 후 바로 제거 됨.
+                $(this).append('★').prepend('☆');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>방탄 좋아요. 클릭은 한번만</h1>
+    <h2>브걸 좋아요. 클릭은 한번만</h2>
+</body>
+</html>

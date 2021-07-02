@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style></style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('button').click(function () {
+                var uid = $('#uid').val().trim(); // 스페이스는 잘라냄
+
+                // $.get(요청페이지(파라미터 포함), 함수(collback 함수))
+                $.get('ID_CONFIRM.html?uid=' + uid, function (data, status) {
+                    // data : 요청 페이지의 결과 데이터
+                    // status : 요청 상태 (success, error, timeout, ...)
+                    if (status == 'success') {
+                        $('#result').html(data);
+                    } else {
+                        alert('실패');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>
+        아이디 <input type="text" name="uid" id="uid"/>
+        <button>중복확인</button>
+    </p>
+    <span id="result"></span>
+</body>
+</html>

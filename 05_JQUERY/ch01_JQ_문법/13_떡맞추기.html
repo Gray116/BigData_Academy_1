@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            width: 620px;
+            text-align:center;
+        }
+        table td {
+            width: 200px;
+            height: 200px;
+            background-color: darkslategrey;
+            color: white;
+            text-align:center;
+        }
+
+        .tdColor {
+            background-color: orangered;
+            color: black;
+        }
+
+        p {
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var ddukidx = parseInt(Math.random() * 8); /* 0~8중 난수 발생시키고 */
+
+            $('td').each(function (idx, item) { /* 0번부터 item에 복사됨 */
+                $(item).click(function () {
+                    $('td').removeClass('tdColor'); /* td의 class를 바꿔 css 추가 */
+
+                    if (idx == ddukidx) {
+                        $(this).css('background', 'url(images/dduk.jpg)');
+                        $(this).css('background-size', '100%');
+                        $('.result').html('<p>정답입니다</p>').css;
+                        $('input').val('정답입니다');
+                        $('td').off('click');
+                    } else {
+                        $(this).addClass('tdColor');
+                        $('.result').html('틀렸습니다 : ' + ddukidx).css;
+                        $('input').val('틀렸습니다');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <table>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+        </table>
+        <p class="result"></p>
+        <input type="text" name="name"/>
+    </div>
+</body>
+</html>

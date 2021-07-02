@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        var i = 0;
+        /* jquery */
+        $(document).ready(function () {
+            $('#p1').click(function () { /* #p1을 클릭시 발생하는 이벤트 */
+                i = i + 1;
+                //$(this).text(i + '번 클릭');
+                $(this).html('<b>' + i + '번</b> 클릭');
+            });
+        }); /* document가 ready가 되었을 때 function 작동 */
+
+        $(function () {
+            /* jquery */
+        });
+    </script>
+</head>
+<body>
+    <p id="p1">태그 하나</p>
+</body>
+</html>

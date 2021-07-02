@@ -1,0 +1,307 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    font-family: Amarante, 'Times New Roman', Times, serif;
+}
+
+@font-face {
+    font-family: 'Amarante';
+    src: url('../fonts/Amarante-Regular.ttf');
+}
+
+/************************* header 시작 *********************************/
+#header {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#header_nav {
+    width: 100%;
+    min-width: 1000px;
+    height: 30px;
+    background-color: #2d1152;
+    overflow: hidden;
+    font-size: .9em;
+}
+
+#header_info {
+    margin: 0 auto;
+    width: 1000px;
+    overflow: hidden;
+}
+
+.gnb ul {
+    line-height: 30px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+    .gnb ul li {
+        float: left;
+        list-style: none;
+        padding-right: 20px;
+    }
+
+        .gnb ul li:first-child {
+            padding-left: 40px;
+        }
+
+        .gnb ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+.survivalFootball {
+    float: right;
+    margin-right: 20px;
+}
+
+    .survivalFootball p {
+        display: block;
+        width: 250px;
+        height: 30px;
+        line-height: 30px;
+        background: url(../images/survivalFootball.png) no-repeat 0 3px;
+        background-size: 23px 23px;
+        color: white;
+        text-align: center;
+    }
+
+#header_info .logo {
+    width: 230px;
+    height: 65px;
+    float: left;
+    margin-top: 10px;
+}
+
+.logo p {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.search {
+    width: 400px;
+    height: 37px;
+}
+
+    .search input:not(.btn_search) {
+        width: 400px;
+        height: 37px;
+    }
+
+.btn_search {
+    width: 124px;
+    height: 34px;
+    background: url('../images/search_btn.png') no-repeat -2px -1px;
+    border: none;
+    color: white;
+}
+
+#header_info .search {
+    width: 535px;
+    height: 50px;
+    float: left;
+    margin-top: 20px;
+}
+
+#header_info .service {
+    float: left;
+    width: 230px;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.service ul {
+    overflow: hidden;
+    text-align: center;
+    line-height: 60px;
+}
+
+    .service ul li {
+        float: left;
+        list-style: none;
+        padding-right: 20px;
+        font-weight: bold;
+    }
+
+        .service ul li:first-child {
+            padding-left: 20px;
+        }
+
+        .service ul li a {
+            text-decoration: none;
+            color: #2d1152;
+        }
+
+/*********************** content 시작 **********************************/
+#content {
+    width: 993px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+    #content #main_menu {
+        float: left;
+        width: 155px;
+        height: 450px;
+    }
+
+#main_menu ul {
+    text-align: center;
+}
+
+    #main_menu ul li {
+        list-style: none;
+        padding-bottom: 25px;
+    }
+
+        #main_menu ul li:first-child {
+            padding-top: 15px;
+        }
+
+        #main_menu ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+/********** main 시작 ***************/
+#content #main {
+    float: left;
+    width: 600px;
+    margin-right: 3px;
+}
+
+#main .main_big_b {
+    width: 600px;
+    height: 300px;
+    border: 1px solid gray;
+    margin: 0 3px 3px 0;
+}
+
+#main .main_slide_b {
+    width: 600px;
+    height: 150px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.sub_menu {
+    width: 600px;
+    height: 50px;
+    background-color: #500095;
+    margin-bottom: 3px;
+}
+
+    .sub_menu ul {
+        overflow: hidden;
+        text-align: center;
+        line-height: 50px;
+    }
+
+        .sub_menu ul li {
+            width: 100px;
+            float: left;
+            list-style: none;
+        }
+
+            .sub_menu ul li a {
+                text-decoration: none;
+                color: white;
+            }
+
+.main_topic1 {
+    width: 600px;
+    height: 100px;
+    margin-bottom: 3px;
+    border: 1px solid gray;
+}
+
+.main_topic2 {
+    width: 600px;
+    height: 100px;
+    margin-bottom: 3px;
+    border: 1px solid gray;
+}
+
+.main_topic3 {
+    width: 600px;
+    height: 100px;
+    margin-bottom: 3px;
+    border: 1px solid gray;
+}
+
+.main_topic4 {
+    width: 600px;
+    height: 100px;
+    margin-bottom: 3px;
+    border: 1px solid gray;
+}
+
+/********** main banner 시작 **************/
+#content #main_banner {
+    float: left;
+    width: 230px;
+    margin: 0 0 0 3px;
+}
+
+.search_word {
+    width: 230px;
+    height: 100px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.ad1 {
+    width: 230px;
+    height: 100px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.ad2 {
+    width: 230px;
+    height: 150px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.ad3 {
+    width: 230px;
+    height: 150px;
+    border: 1px solid gray;
+    margin-bottom: 3px;
+}
+
+.ad4 {
+    width: 230px;
+    height: 200px;
+    border: 1px solid gray;
+}
+
+/*************************** footer 시작 ******************************************/
+#footer {
+    width: 988px;
+    height: 100px;
+    margin: 0 auto;
+    border: 1px solid gray;
+}
+
+    #footer ul {
+        overflow: hidden;
+        width: 800px;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+        #footer ul li {
+            float: left;
+            list-style: none;
+            text-align: center;
+            padding-right: 30px;
+        }
+
+            #footer ul li:first-child {
+                padding-left: 50px;
+            }

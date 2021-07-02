@@ -1,0 +1,246 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    height: 272px;
+    margin: 0 auto;
+}
+
+    #header .gnb {
+        background-color: black;
+        height: 30px;
+        width: 100%;
+    }
+
+        #header .gnb ul {
+            overflow: hidden;
+            margin: 0 auto;
+            width: 1000px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+            #header .gnb ul li {
+                float: left;
+                padding-right: 45px;
+                margin: 0 auto;
+                list-style: none;
+                text-align: center;
+                line-height: 30px;
+            }
+
+                #header .gnb ul li:first-child {
+                    padding-left: 55px;
+                }
+
+                #header .gnb ul li a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                    #header .gnb ul li a:hover {
+                        color: coral;
+                    }
+
+    #header .logo {
+        width: 150px;
+        height: 100px;
+        border: 1px solid lightgray;
+        margin: 30px auto;
+    }
+
+.logo p {
+    text-align: center;
+    line-height: 100px;
+}
+
+.hitmenu {
+    width: 1000px;
+    height: 30px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+    .hitmenu li {
+        width: 80px;
+        height: 30px;
+        float: right;
+        list-style: none;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid lightgray;
+        margin-right: 2px;
+    }
+
+        .hitmenu li:first-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .hitmenu li:last-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .hitmenu li a {
+            padding: 15px;
+            text-decoration: none;
+            color: black;
+        }
+
+            .hitmenu li a:hover {
+                color: chocolate;
+            }
+
+#header .lnb {
+    height: 30px;
+    background-color: black;
+}
+
+    #header .lnb ul {
+        width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+    }
+
+        #header .lnb ul li {
+            float: left;
+            list-style: none;
+            padding: 0 30px;
+        }
+
+            #header .lnb ul li:first-child {
+                margin-left: 60px;
+            }
+
+            #header .lnb ul li a {
+                text-decoration: none;
+                color: white;
+            }
+
+                #header .lnb ul li a:hover {
+                    color: coral;
+                }
+
+
+#content {
+    width: 1000px;
+    height: 1200px;
+    margin: 0 auto;
+}
+
+    #content #selection1 {
+        overflow: hidden;
+        width: 1000px;
+    }
+
+    #content p {
+        text-align: center;
+        line-height: 400px;
+    }
+
+    #content .slide_banner {
+        float: left;
+        width: 700px;
+        height: 400px;
+        background-color: greenyellow;
+    }
+
+    #content .side_banner {
+        float: left;
+        width: 300px;
+        height: 400px;
+        background-color: lawngreen;
+    }
+
+    #content .section2 {
+        overflow: hidden;
+        width: 1200px;
+        height: 800px;
+    }
+
+.hit_product ul {
+    overflow: hidden;
+    text-align: center;
+    line-height: 400px;
+}
+
+    .hit_product ul li {
+        display: block;
+        float: left;
+        width: 240px;
+        height: 400px;
+        list-style: none;
+        background-color: lightgoldenrodyellow;
+        margin-left: 7px;
+    }
+
+        .hit_product ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+.md_product ul {
+    overflow: hidden;
+    text-align: center;
+    line-height: 400px;
+}
+
+    .md_product ul li {
+        display: block;
+        float: left;
+        width: 240px;
+        height: 400px;
+        list-style: none;
+        background-color: cadetblue;
+        margin: 10px 0 0 7px;
+    }
+
+        .md_product ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+#footer {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+    #footer .office_logo {
+        float: left;
+        width: 300px;
+        height: 120px;
+        text-align: center;
+        line-height: 120px;
+    }
+
+    #footer .office_address {
+        float: left;
+        width: 400px;
+        height: 120px;
+        text-align: center;
+        line-height: 120px;
+    }
+
+    #footer .shopping_Info {
+        float: left;
+        width: 300px;
+        height: 120px;
+        text-align: center;
+        line-height: 120px;
+    }
+
+    #footer .copyright {
+        clear: both;
+        width: 1000px;
+        height: 30px;
+        background-color: black;
+        color: white;
+        text-align: center;
+    }

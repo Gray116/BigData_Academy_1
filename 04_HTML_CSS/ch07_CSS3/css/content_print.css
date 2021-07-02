@@ -1,0 +1,7 @@
+﻿/* content 부분의 print */
+#wrap .content {
+    background-color: white;
+    color: darkslategray;
+    font-size: 1em;
+    padding: 30px 10px;
+}

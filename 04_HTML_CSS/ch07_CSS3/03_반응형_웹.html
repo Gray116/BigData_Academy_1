@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0
+          , maximum-scale=2.0, minimum-scale=0.7"/>
+    <title></title>
+    <style>
+        @media screen and (max-width: 767px) { /* 스마트폰 화면 */
+            #wrap {
+                width: 100%;
+                background-color: lightpink;
+            }
+
+                #wrap #nav ul li:nth-child(3),
+                #wrap #nav ul li:nth-child(5) {
+                    display: none;
+                }
+
+                #wrap #nav ul li {
+                    width: 33.333%;
+                    font-size: 1em;
+                    font-weight: bold;
+                }
+
+            #footer {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 999px) { /* 태블릿 화면 */
+            #wrap {
+                width: 100%;
+                background-color: lightcyan;
+            }
+
+                #wrap #nav ul li:nth-child(5) {
+                    display: none;
+                }
+
+                #wrap #nav ul li {
+                    width: 25%;
+                    font-size: 1em;
+                    font-weight: bold;
+                }
+        }
+
+        @media screen and (min-width: 1000px) { /* PC 화면 */
+            #wrap {
+                width: 1000px;
+                margin: 0 auto;
+            }
+
+                #wrap #nav ul li {
+                    width: 20%;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                }
+        }
+
+        /* 공통 부분은 따로 빼주기 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            text-align: center;
+        }
+
+        #wrap {
+            border: 1px solid gray;
+        }
+
+        #wrap #header {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        #wrap #nav ul {
+            overflow: hidden;
+        }
+
+        #wrap #nav ul li {
+            float: left;
+            height: 60px;
+            line-height: 60px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        #wrap #content {
+            padding: 10px;
+        }
+
+        #wrap #footer {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <h1>반응형 웹</h1>
+        </div>
+
+        <div id="nav">
+            <ul>
+                <li><a href="#">MENU1</a></li>
+                <li><a href="#">MENU2</a></li>
+                <li><a href="#">MENU3</a></li>
+                <li><a href="#">MENU4</a></li>
+                <li><a href="#">MENU5</a></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <h2>음바페, '우상' 호날두와 화기애애한 모습 포착</h2>
+            <p>
+                프랑스와 포르투갈은 24일(한국시간) 헝가리 부다페스트의 푸스카스 아레나서 열린 유로 2020 F조 조별리그 최종 3차전서 2-2로 비겼다.
+                레알 마드리드서 한솥밥을 먹었던 카림 벤제마(프랑스)와 크리스티아누 호날두(포르투갈)가 나란히 2골씩 터뜨리며 활약했다.
+                프랑스는 이날 무승부로 승점 5, 조 1위로 16강에 진출해 스위스와 격돌한다. 포르투갈은 승점 4, 조 3위로 16강에 안착해 피파랭킹 1위 벨기에와 만난다. 
+                헝가리와 2-2로 비긴 독일은 2위로 16강에 올라 잉글랜드와 맞붙는다. 이날 호날두는 페널티킥으로만 2골을 터트리면서 대회 3경기서 5골을 넣는 저력을 뽐냈다.
+                그는 이란의 전설적인 스트라이커 알리 다에이가 보유한 A매치 역대 최다골(109골)과 타이 기록을 세웠다. 2003년 포르투갈 A대표팀에 데뷔한 그는 18년간 178경기에 출전해 109골을 기록을 세우는데 성공했다.
+            </p>
+        </div>
+
+        <div id="footer">
+            홍길동 주식회사
+        </div>
+    </div>
+</body>
+</html>

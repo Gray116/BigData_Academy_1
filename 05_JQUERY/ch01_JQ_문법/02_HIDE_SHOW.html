@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('*').css('color', 'blue').css('margin', '20px');
+
+            $('p').click(function () {
+                $(this).hide(); /* 누르는 것(this = 내 자신)을 hide */
+            });
+
+            $('#hide_p1').click(function () {
+                $('#p1').hide();
+            });
+
+            $('#hide_Ptag').click(function () {
+                $('p').hide();
+            });
+
+            $('#show_Ptag').click(function () {
+                $('p').show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>이곳은 heading</h1>
+    <p>이 p태그를 클릭하면 숨겨져요</p>
+    <p>이 p태그를 클릭해도 숨겨져</p>
+    <p id="p1">p1하나만도 숨겨져요</p>
+    <button id="hide_p1">p1 하나만 숨겨요</button>
+    <button id="hide_Ptag">p태그를 다 숨겨요</button>
+    <button id="show_Ptag">p태그가 다 나타나요</button>
+</body>
+</html>
