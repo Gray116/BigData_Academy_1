@@ -379,3 +379,30 @@ select e.pname, pay, dname, round(avgpay, 2) depavg
 select pname, pay, dname, (select avg(pay) from personal where deptno = p.deptno) diviavg
 	from personal p, division d
     where p.deptno = d.deptno;
+    
+select * from personal;
+
+alter user 'root'@'localhost'
+	identified with mysql_native_password
+    by 'mysql';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

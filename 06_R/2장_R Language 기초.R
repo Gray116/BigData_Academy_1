@@ -137,8 +137,10 @@ month.abb # 월 이름 약자자
 month.name # 월 이름름
 
 c(1,2,3,4,5,6,7,8,9,10,11,12)
+
 nth <- paste(1:12, c('st', 'nd', 'rd', rep('th', 9)), sep = "")
 nth <- paste0(1:12, c('st', 'nd', 'rd', rep('th', 9)))
+
 paste(month.name, nth, sep = ":")
 paste(month.name, nth, sep = "은")
 paste(month.name, nth, sep = "은", collapse="/")
