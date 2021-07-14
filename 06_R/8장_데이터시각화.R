@@ -408,6 +408,69 @@ ggplot(economics, aes(x = date, y = unemploy)) +
 #     히스토그램(geom_histogram()) : 연속된 자료를 계급으로 나누어, 계급별 도수를 나타낸다
 #     geom_bar() : 범주형 데이터의 빈도를 나타낸다.
 #     geom_col() : x, y축이 다 존재할 경우 (geom_bar()함수도 사용할 수 있음)
+library(ggplot2)
+table(mpg$manufacturer)
+? geom_bar
+
+ggplot(mpg, aes(x = manufacturer)) +
+  geom_bar(stat = "count") +
+  theme(axis.text.x = element_text(angle = 60, vjust = 0.8))
+
+# ex1. 제조회사별 막대그래프 (class별로 다른 색상 적용)
+library(RColorBrewer)
+ggplot(mpg, aes(x = manufacturer, fill = class)) +
+  geom_bar(stat = "count") +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle = 60, vjust = 0.8)) +
+  labs(title = "제조회사별 빈도", subtitle = "(class별 분리)",
+       x = "제조회사", y = "빈도수", caption = "soucre:ggplot2::mpg") +
+  scale_fill_manual(values = brewer.pal(7, "Set3")) +
+  scale_color_manual(values = brewer.pal(7, "Set3")) +
+  coord_cartesian(ylim = c(0, 50))
+
+# ex2. 절단품질(cut)별 빈도수
+diamonds <- ggplot2::diamonds
+
+ggplot(diamonds, aes(x = cut)) +
+  geom_bar(stat = "count", aes(fill = cut))
+
+# ex3. 절단품질(cut)별 색상(color)의 빈도수
+library(ggplot2)
+library(dplyr)
+head(diamonds)
+
+diamonds %>% group_by(cut, color) %>% 
+  summarise(cnt = n()) %>% 
+  ggplot(aes(x = cut, y = cnt, fill = color)) +
+  geom_bar(stat = "identity", position = "dodge") + # position(= beside=T) : 막대 개별 분할
+  # geom_col(position = "dodge")
+  theme(legend.position = "bottom")
+
+# ex4. cut별 table(다이아몬드 상단 넓이) 갯수 시각화(title 가운데 정렬)
+table(diamonds$cut, diamonds$table)
+
+diamonds %>% 
+  group_by(cut, table) %>% 
+  summarise(n = n()) %>%
+  group_by(cut) %>%
+  summarise(cnt = n()) %>% 
+  ggplot(aes(x = cut, y = cnt, fill = cut)) +
+  geom_bar(stat = "identity") +
+  labs(title = "다이아몬드 품질별 다이아몬드 상단 넓이 종류 수",
+       subtitle = "cut별 테이블 수") +
+  theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
+# ex5. cut별 table별 빈도수 시각화 (cut, table 각각 따로)
+table(diamonds$cut, diamonds$table)
+
+diamonds %>% 
+  group_by(cut, table) %>% 
+  summarise(n = n()) %>% 
+  ggplot(aes(x = table, y = n)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ cut) + # cut의 각각의 레벨별로
+  coord_cartesian(ylim = c(0, 5000), xlim = c(50, 80))
 
 # 4.8 그래프를 파일로 저장
 # (1) basic graph, ggplot 패키지(모두 저장가능)
