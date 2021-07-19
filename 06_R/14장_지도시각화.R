@@ -92,36 +92,24 @@ View(kormap1) # 시도별 위도,경도
 View(korpop1) # 2015년 센서스 데이터
               # korpop2 2015 - 시군구별 인구 데이터
               # korpop3 2015 - 읍면동별 인구 데이터
-head(korpop1)
+head(korpop1, 2) # 2015년 센서스 데이터(시도별)
+head(kormap1, 2)
 
 # kormap1$name의 인코딩 바꾸기 (글자 깨져있음)
 library(stringi)
 library(dplyr)
-# kormap1$name <- iconv(kormap1$name, 'UTF-8', 'CP949')
+str(changeCode(korpop1))
 
-head(korpop1[, c('name', 'pop', 'code')])
 korpop1 <- rename(korpop1, pop = 총인구_명,
                   name = 행정구역별_읍면동)
-korpop1$code
 
+korpop1$name <- iconv(korpop1$name, 'UTF-8', 'CP949')
+head(korpop1[, c('name', 'pop', 'code')])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 지도 시각화
+ggChoropleth(data = korpop1, # 지도에 표현할 데이터셋
+             aes(fill = pop, # 지도에 채워질 변수
+                 tooltip = name,
+                 map_id = code), # 지역구분 변수
+             map = kormap1, # 위도,경도 데이터
+             interactive = T)
