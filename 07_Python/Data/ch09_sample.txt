@@ -1,0 +1,13 @@
+방법1 : 
+Hello World
+
+방법2 : 
+Python is easy
+R is easy
+Java is smart
+
+방법3 : 
+Python is easy
+R is easy
+Java is smart
+

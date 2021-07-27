@@ -1,0 +1,20 @@
+[
+ {
+  "name": "허저",
+  "age": 25,
+  "email": "hujeo@hong.com",
+  "address": "서울"
+ },
+ {
+  "name": "전위",
+  "age": 22,
+  "email": "jeon@hong.com",
+  "address": "경기"
+ },
+ {
+  "name": "우금",
+  "age": 23,
+  "email": "woo@hong.com",
+  "address": "인천"
+ }
+]
