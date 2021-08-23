@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>첫 화면</title>
+    {% load static %}
+    <link href="{% static 'css/ex.css' %}", rel="stylesheet", type="text/css">
+</head>
+<body>
+    <h2>템플릿 index.html을 사용해 보았어요.</h2>
+    <h1>{{msg}}</h1>
+    <img src="{% static 'img/django.png' %}", alt="Django 그림">
+</body>
+</html>
