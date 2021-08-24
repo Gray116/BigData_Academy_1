@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href = "{% static 'css/ex.css' %}", rel = "stylesheet">
+</head>
+<body>
+    <h1>글자 수 및 워드 카운팅 프로그램</h1>
+    <a href = "#">ABOUT</a>
+    <form action = "{% url 'wordCnt:result' %}", method = "get">
+        <textarea name = "fullText"
+                  cols = "40"
+                  rows = "10"></textarea> # 비워놔야 함
+        <input type = "submit", value = "계산결과">
+    </form>
+</body>
+</html>

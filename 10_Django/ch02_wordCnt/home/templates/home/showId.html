@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href="{% static 'css/ex.css' %}", rel="stylesheet", type="text/css">
+</head>
+<body>
+    <h1>render 함수를 이용해서 템플릿 사용</h1>
+    <h2>입력하신 ID 타입 : {{ type }}</h2>
+    <h2>{{ msg }}</h2>
+</body>
+</html>

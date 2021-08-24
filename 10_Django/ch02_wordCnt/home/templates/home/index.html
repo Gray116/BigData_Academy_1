@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>첫 화면</title>
+    # 부트스트랩 링크 가져오기
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+
+    # css 불러오기
     {% load static %}
-    <link href="{% static 'css/ex.css' %}", rel="stylesheet", type="text/css">
+    <link href = "{% static 'css/ex.css' %}",
+          rel = "stylesheet",
+          type = "text/css">
 </head>
 <body>
     <h2>템플릿 index.html을 사용해 보았어요.</h2>
     <h1>{{msg}}</h1>
-    <img src="{% static 'img/django.png' %}", alt="Django 그림">
+    <img src = "{% static 'img/django.png' %}", alt = "Django 그림"><br>
+    <a href = "{% url 'test' %}">TEST</a>
+    <a href = "{% url 'showIntId' 124 %}">숫자 ID로</a><br>
+    <a href = "/showId/124">숫자 ID로</a><br>
+    <a href = "{% url 'showStrId' 'ABC' %}">문자 ID로</a><br>
+    <button type = "button"
+            class = "btn btn-danger"
+            onclick = "location = '/test'">TEST</button>
+    <button type = "button"
+            class = "btn btn-warning"
+            onclick = "location = '/showId/123'">숫자 ID</button>
+    <button type = "button"
+            class = "btn btn-info"
+            onclick = "location = '/showId/ABC'">문자 ID</button><br>
+    <a href="{% url 'wordCnt:wordInput' %}">wordCnt</a>
 </body>
 </html>
