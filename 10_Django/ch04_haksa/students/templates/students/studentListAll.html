@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>학생목록</title>
+    {% load static %}
+    <link rel="stylesheet", href="{% static 'style.css' %}", type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('td.detail').click(function(){
+                name = $(this).parent().children(0).eq(0).html();
+                location = '/students/detail/' + name;
+            });
+        });
+    </script>
+</head>
+<body>
+    <script>
+        {% if msg %}
+            alert('삭제 성공');
+        {% endif %}
+    </script>
+
+    <table>
+        <caption>Student List</caption>
+        <tr><th colspan = "4"><a href = "{% url 'students:register' %}">신규학생 등록</a></th></tr>
+        {% if student_list %}
+            <!-- Student에 데이터가 있는 경우 -->
+            <tr><th>이름</th><th>전공</th><th>학년</th><th></th></tr>
+            {% for student in student_list %}
+                <tr>
+<!--                    <td><a href = "{% url 'students:detail' student.s_name %}">{{ student.s_name }}</a></td>-->
+                    <td class = 'detail'>{{ student.s_name }}</td>
+                    <td class = 'detail'>{{ student.s_major }}</td>
+                    <td class = 'detail'>{{ student.s_grade }}</td>
+                    <td>
+                        <button onclick = "location = '{% url 'students:modify' student.s_name %}'">수정</button>
+                        <button onclick = "location = '{% url 'students:delete' student.s_name %}'">삭제</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <!-- Student에 데이터가 없는 경우 -->
+            <tr><td colspan = "4">Student : 현재 {{ cnt }}명</td></tr>
+        {% endif %}
+    </table>
+</body>
+</html>

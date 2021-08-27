@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>학생 수정</title>
+    {% load static %}
+    <link rel="stylesheet", href="{% static 'style.css' %}", type="text/css">
+</head>
+<body>
+    {% if student %} <!-- student에 값이 있으면 true -->
+    <form action="{% url 'students:modifyCon' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr><th>이름</th>
+                <td><input type="text" name="name"
+                           value="{{ student.s_name }}" readonly='readonly'></td>
+            </tr>
+
+            <tr><th>전공</th>
+                <td><input type="text" name="major"
+                           value="{{ students.s_major }}"></td>
+            </tr>
+
+            <tr><th>나이</th>
+                <td><input type="text" name="age"
+                           value="{{ students.s_age }}"></td>
+            </tr>
+
+            <tr><th>학년</th>
+                <td><input type="text" name="grade"
+                           value="{{ students.s_grade }}"></td>
+            </tr>
+
+            <tr><th>성별</th>
+                <td>
+                    {% if student.s_gender == '남' %}
+                        <input type="radio" name="gender" value="남" checked="checked">남
+                        <input type="radio" name="gender" value="여">여
+                    {% else %}
+                        <input type="radio" name="gender" value="남">남
+                        <input type="radio" name="gender" value="여" checked="checked">여
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="저장">
+                    <input type="reset" value="초기화">
+                    <input type="button" value="삭제" onclick="location = '#삭제경로'">
+                    <input type="button" value="목록"
+                           onclick="location = '{% url 'home' %}'">
+                    <input type="button" value="등록"
+                           onclick="location = '{% url 'students:register' %}'">
+                </td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+        <table>
+            <tr><th>데이터가 없습니다.</th></tr>
+            <tr>
+                <td>
+                    <button onclick="location = '{% url 'students:listAll' %}'">목록</button>
+                    <button onclick="location = '{% url 'students:register' %}'">등록</button>
+
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
